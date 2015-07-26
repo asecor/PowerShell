@@ -40,9 +40,9 @@ Write-host "Finished"
 2.2 if it doesn't exists create vswitch0
 2.3 add nics specified in 1.1 to vswitch0 
 2.4 go to 2.1
-3. check if vswitch0 exists 
+3. check if vswitch1 exists 
 3.1 if exists create new portgroups 
-3.2 if it doesn't exists create vswitch0
-3.3 add nics specified in 1.1 to vswitch0 
+3.2 if it doesn't exists create vswitch1
+3.3 add nics specified in 1.1 to vswitch1 
 3.4 go to 3.1
 #>
