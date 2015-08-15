@@ -29,7 +29,7 @@ Write-host "Finished"
 }
 
 
-
+  
 
 <#
 1. connect to esxihost

@@ -23,3 +23,4 @@ New-ItemProperty -Path $regpath -Name $CaptionFont -Value $CaptionFontValue -Pro
 New-ItemProperty -Path $regpath -Name $ScrollWidth -Value $ScrollWidthValue -PropertyType String -Force 
 New-ItemProperty -Path $regpath -Name $ScrollHeight -Value $ScrollHeightValue -PropertyType String -Force 
 New-ItemProperty -Path $regpath -Name $PaddedBorderWidth -Value $PaddedBorderWidthValue -PropertyType String -Force 
+ 
