@@ -1,0 +1,9 @@
+#script to get anything that matches "https" from a file on multiple remote servers
+
+$servers = 'server1,server2,server3,server4,server5'.Split(',')
+
+foreach ($server in $servers) {
+Write-Host $server 
+$result = Invoke-Command -ComputerName $server -ScriptBlock { Get-Content -Path "C:\Program Files\Microsoft Team Foundation Server 12.0\Version Control Proxy\Web Services\VersionControlProxy\proxy.config" | Where-Object {$_ -like '*https*'}}
+$result.Replace("<Uri>", "").Replace("</Uri>","")
+}
