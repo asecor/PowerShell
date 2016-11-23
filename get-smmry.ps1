@@ -41,6 +41,6 @@ $result = $form.ShowDialog()
 if ($result -eq [System.Windows.Forms.DialogResult]::OK)
 {
     $targeturl = $textBox.Text
-    $smry = Invoke-WebRequest "http://api.smmry.com/&SM_API_KEY=7F58483555&SM_LENGTH=5&SM_URL=$targeturl" | ConvertFrom-Json
+    $smry = Invoke-WebRequest "http://api.smmry.com/&SM_API_KEY=xxxxxxx&SM_LENGTH=5&SM_URL=$targeturl" | ConvertFrom-Json
     $smry.sm_api_content | Out-GridView
 }
