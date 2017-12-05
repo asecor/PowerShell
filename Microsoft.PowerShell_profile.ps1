@@ -1,7 +1,6 @@
 Set-Location C:\
 Set-PSReadlineKeyHandler -Key Tab -Function Complete
 New-Alias -Name npp -Value "C:\Program Files\Notepad++\notepad++.exe"
-Import-Module Vmware.VimAutomation.Core
 
 #Window Title
 [System.Security.Principal.WindowsPrincipal]$global:currentUser = 
@@ -42,13 +41,14 @@ Function Prompt {
     }
   
 	$pdate = (Get-Date -format HH:mm:ss)
-    $Prompt = "[$pdate] $($env:USERNAME.ToLower())@$($env:COMPUTERNAME.ToLower()) $Symbol "
+    #$Prompt = "[$pdate] $($env:USERNAME.ToLower())@$($env:COMPUTERNAME.ToLower()) $Symbol "
+	$Prompt = "[$pdate] $($env:COMPUTERNAME.ToLower()) $Symbol "
     $Host.UI.RawUI.WindowTitle = $Prompt
     $Prompt
 }
 
 #Session logging
-$PoSHLog = "$env:USERPROFILE\Scripts\Transcripts\PSSessionLog_$(Get-Date -Format MMddyyyy).log"
+$PoSHLog = "C:\PortableApps\ConEmu\Transcripts\PSSessionLog_$(Get-Date -Format MMddyyyy).log"
 Start-Transcript -Path $PoSHLog -Append
 
 #Checks if PoSH session is being executed as Administrator
@@ -66,4 +66,22 @@ if( $IsAdmin ){
 Function Start-PowerShellAsAdmin {
     $Credential = New-Object -TypeName System.Management.Automation.PsCredential -ArgumentList "domain\username",(Get-Content "$($env:userprofile)\filename_priv.txt" | ConvertTo-SecureString)
     Start-Process PowerShell -LoadUserProfile -Credential $Credential
+}
+
+#Creates a new file if it does not exist or updates the timestamp if it does exist
+Function touch
+{
+    $file = $args[0]
+    if($file -eq $null) {
+        throw "No filename supplied"
+    }
+
+    if(Test-Path $file)
+    {
+        (Get-ChildItem $file).LastWriteTime = Get-Date
+    }
+    else
+    {
+        echo $null > $file
+    }
 }
